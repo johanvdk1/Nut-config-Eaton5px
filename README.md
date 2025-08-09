@@ -1,4 +1,6 @@
-Aim: all services are restored without intervention. Normally servers that were shutdown on a UPS will not experience power loss if the ups is not fully drained. So they will not use the BIOS "what to do after power loss" setting, and remain in standby. BIOS setting should be "restart" and not "do nothing" or "previous state"
+Note: work in progress. scheduler and commands to be written.
+
+Aim: all services are restored without intervention. Normally servers that were shutdown on a UPS will not experience power loss if the UPS is not fully drained. So they will not use the BIOS "what to do after power loss" setting, and remain in standby after power is restored. BIOS setting should be "restart" and not "do nothing" or "previous state"
 Here the Proxmox server (also UPSD host) cuts the power to the Truenas server. Which then in turn wakes up the proxmox server when power is restored.
 
 Configuration for Eaton5px
