@@ -6,7 +6,7 @@ Here the Proxmox server (also UPSD host) cuts the power to the Truenas server. W
 Configuration for Eaton5px
 Connections: 
  - outlet unswitched: critical equipment and Proxmox pve. Keep internet and landline running.
- - outlet group 1: Truenas. Own nut client, shuts down 300 secs after ups reports ONBATT. Allows files to be saved by users on laptops.
+ - outlet group 1: Truenas. Own nut client, shuts down 300 secs after ups reports ONBATT. Allows files to be saved by users on laptops. LAN Switch and 1 AP on unswitched outlet.
  - outlet group 2: Shed group. Switch off to prolong battery runtime, just wait a few minutes in case of a short power interruption.
    Proxmox pve will control (switch off) group 1 and go standby after 600 seconds. 
 
