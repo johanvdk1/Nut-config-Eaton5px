@@ -8,7 +8,7 @@ Connections:
  - outlet unswitched: critical equipment and Proxmox pve. Keep internet and landline running.
  - outlet group 1: Truenas. Own nut client, shuts down 300 secs after ups reports ONBATT. Allows files to be saved by users on laptops.
  - outlet group 2: Shed group. Switch off to prolong battery runtime, just wait a few minutes in case of a short power interruption.
-   roxmox will control (switch off) group 1 and go standby after 600 seconds. 
+   Proxmox pve will control (switch off) group 1 and go standby after 600 seconds. 
 
 Wake-up sequence
   Power returns before 300 seconds:
