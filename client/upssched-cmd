@@ -14,6 +14,7 @@
 # shed-on
 # poweroff-truenas
 # poweron-truenas
+# shutdown-proxmox
 
 #case $1 in
 #       onbattwarn)
