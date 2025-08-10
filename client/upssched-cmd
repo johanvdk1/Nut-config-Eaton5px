@@ -42,7 +42,7 @@ case $1 in
     onbattwarn)
         # Send a notification mail
         echo "The UPS has been on battery for awhile" \
-        | mail -s"UPS monitor" johan.vanderkolk@gmail.com
+        | mail -s"UPS monitor" xxx@gmail.com
         # Create a flag-file on the filesystem, for your own processing
         /usr/bin/touch /home/johan/nutbat
          ;;
