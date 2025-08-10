@@ -10,6 +10,9 @@
 # The first argument passed to your CMDSCRIPT is the name of the timer
 # from your AT lines.
 
+# shed
+# shed-on
+
 #case $1 in
 #       onbattwarn)
 #               # Send a notification mail
