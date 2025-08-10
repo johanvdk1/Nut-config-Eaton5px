@@ -12,6 +12,8 @@
 
 # shed
 # shed-on
+# poweroff-truenas
+# poweron-truenas
 
 #case $1 in
 #       onbattwarn)
