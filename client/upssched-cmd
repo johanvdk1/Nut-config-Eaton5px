@@ -39,7 +39,7 @@
 
 # START: User-specific settings                            
 # Use a user authorised to issue the commands below in upsd.users
-UPS_USERNAME="upsmon"
+UPS_USERNAME="user"
 UPS_PASSWORD="pass"
 UPS_LINK="Eaton5Px@localhost"
 # END  
