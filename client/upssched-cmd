@@ -39,50 +39,55 @@
 
 # START: User-specific settings                            
 # Use a user authorised to issue the commands below in upsd.users
-UPS_USERNAME="xxxx"
-UPS_PASSWORD="yyyy"
+UPS_USERNAME="upsmon"
+UPS_PASSWORD="pass"
 UPS_LINK="Eaton5Px@localhost"
 # END  
 
 case $1 in
-    onbattwarn)
-        # Send a notification mail
-        echo "The UPS has been on battery for awhile" \
-        | mail -s"UPS monitor" xxx@gmail.com
-        # Create a flag-file on the filesystem, for your own processing
-        /usr/bin/touch /home/johan/nutbat
-         ;;
+    shed)
+       message="Shedding group1"
+       logger -t upssched-cmd "$message"
+       upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} outlet.1.load.off
+       ;;
 
-    onbatt)
-        # make sure beeper is enabled
-        upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} beeper.enable
-        # alert
-        message="Power outage, nu op de batterij"
+    shed_on)
+       message="Restoring group1"
+       logger -t upssched-cmd "$message"
+       upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} outlet.1.load.on
+       ;;
+
+    poweroff_truenas)
+       message="Truenas power off"
+       logger -t upssched-cmd "$message"
+       upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} outlet.2.load.off
+       ;;
+
+    poweron_truenas)
+       message="Truenas power off"
+       logger -t upssched-cmd "$message"
+       upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} outlet.2.load.on
+       ;;
+
+    shutdown_proxmox)
+        message="shutting down self'
         logger -t upssched-cmd "$message"
-        ;;
+        /bin/shutdown -h now
+       ;;
+    
     onpower)
         message="Power restored"
         logger -t upssched-cmd "$message"
         # wakeup NAS+backup in case they were shutdown and group1 was not shedded yet. (won't reboot as no power drop was detected)
         /usr/bin/WakeAll.sh
         ;;
-    mute_beeper)
-         message="(2) minute limit exceeded, muting beeper"
-         upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} beeper.mute
-         ;;
-    onbatt_shutdown)
-        message="Triggering shutdown after (20) minutes on battery"
-        logger -t upssched-cmd "$message"
-        # /sbin/upsmon -c fsd
-        ;;
+   
+     
     replace_batt)
         message="Quick self-test indicates battery requires replacement"
         logger -t upssched-cmd "$message"
         ;;
-    outlet_group1-off)
-       message="Shedding group1"
-       logger -t upssched-cmd "$message"
-       upscmd -u ${UPS_USERNAME} -p ${UPS_PASSWORD} ${UPS_LINK} outlet.1.load.off
+    
 
     *)
         logger -t upssched-cmd "Unrecognized command: $1"
